@@ -1,0 +1,29 @@
+headers = SDL3/SDL.h
+package = sdl3.internal
+
+compilerOpts = -I/opt/homebrew/include \
+    -I/opt/homebrew/include/SDL3 \
+    -I/usr/include/SDL3 \
+    -I/usr/local/include/SDL3 \
+    -I/Library/Frameworks/SDL3.framework/Headers
+compilerOpts.mingw = -D_WINDOWS -DWIN32_LEAN_AND_MEAN
+compilerOpts.linux = -I/usr/local/include/SDL3 -D__linux__
+compilerOpts.osx = -D__APPLE__ -D__MACH__
+compilerOpts.android = -D__ANDROID__ -D__linux__
+compilerOpts.ios = -D__APPLE__ -D__MACH__ -D__IPHONEOS__
+compilerOpts.tvos = -D__APPLE__ -D__MACH__ -D__TVOS__
+
+linkerOpts.mingw = -L"C:/SDL3/lib/x64" -lSDL3
+linkerOpts.linux = -L/usr/local/lib
+linkerOpts.osx = -framework SDL3
+linkerOpts.macos_arm64 = -L/opt/homebrew/lib
+linkerOpts.macos_x86_64 = -L/usr/local/lib
+linkerOpts.linux = -lSDL3
+linkerOpts.android = -lSDL3
+linkerOpts.ios = -lSDL3
+linkerOpts.tvos = -lSDL3
+---
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+
+
