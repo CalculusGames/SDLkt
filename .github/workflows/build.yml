@@ -83,6 +83,19 @@ jobs:
             ${{ runner.os }}-${{ runner.arch }}-konan
       - name: Change Permissions
         run: chmod +x ./gradlew
+      - name: Install SDL3 (Linux)
+        if: ${{ matrix.name == 'linux-x64' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl3-dev libsdl3-image-dev libsdl3-mixer-dev libsdl3-ttf-dev
+      - name: Install SDL3 (macOS)
+        if: ${{ matrix.name == 'macos-arm64' || matrix.name == 'macos-x64' }}
+        run: |
+          brew install sdl3 sdl3_image sdl3_mixer sdl3_ttf
+      - name: Install SDL3 (Windows)
+        if: ${{ matrix.name == 'windows' }}
+        run: |
+          choco install sdl3 sdl3_image sdl3_mixer sdl3_ttf
       - name: Build with Gradle
         run: ./gradlew clean assemble
       - name: Archive Build Artifacts
