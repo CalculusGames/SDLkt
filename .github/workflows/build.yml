@@ -71,6 +71,7 @@ jobs:
           java-version: '17'
           cache: 'gradle'
       - name: Set up Konan
+        if: success() || failure()
         uses: actions/cache@v4
         with:
           path: |
@@ -88,9 +89,10 @@ jobs:
         id: sdl
         with:
           install-linux-dependencies: true
+          build-type: Release
           version: 3-latest
-          version-sdl-image: 3-latest
-          version-sdl-ttf: 3-latest
+          cmake-generator: Ninja
+          discriminator: ${{ matrix.name }}
           add-to-environment: true
       - name: Build with Gradle
         run: ./gradlew clean assemble
@@ -111,6 +113,7 @@ jobs:
           subject-name: build-artifacts-${{ matrix.name }}-${{ github.run_id }}
           subject-digest: sha256:${{ steps.archive.outputs.artifact-digest }}
       - name: Stop Gradle
+        if: success() || failure()
         run: ./gradlew --stop
 
   deploy:

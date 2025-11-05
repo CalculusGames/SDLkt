@@ -1,4 +1,4 @@
-headers = SDL3/SDL.h SDL3_image/SDL_image.h SDL3_ttf/SDL_ttf.h
+headers = SDL3/SDL.h
 package = sdl3.internal
 
 compilerOpts = -I/opt/homebrew/include \
