@@ -91,6 +91,7 @@ jobs:
           version: 3-latest
           version-sdl-image: 3-latest
           version-sdl-ttf: 3-latest
+          add-to-environment: true
       - name: Build with Gradle
         run: ./gradlew clean assemble
       - name: Archive Build Artifacts
