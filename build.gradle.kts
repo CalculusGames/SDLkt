@@ -5,8 +5,8 @@ plugins {
     kotlin("multiplatform") version "2.2.21"
     kotlin("native.cocoapods") version "2.2.21"
     id("org.jetbrains.dokka") version "2.1.0"
-    id("com.vanniktech.maven.publish") version "0.34.0"
-    id("com.diffplug.spotless") version "8.0.0"
+    id("com.vanniktech.maven.publish") version "0.35.0"
+    id("com.diffplug.spotless") version "8.1.0"
 
     signing
 }
